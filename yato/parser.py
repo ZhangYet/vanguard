@@ -1,5 +1,6 @@
 from typing import List, Tuple
 from bs4 import BeautifulSoup, Tag
+from PyOrgMode import PyOrgMode
 
 
 class Record:
@@ -12,6 +13,17 @@ class Record:
 
     def __repr__(self):
         return f'《{self.title}》 read on {self.date}, comment: {self.comment}'
+
+    def wrap_heading(self) -> str:
+        return f'[[{self.url}][{self.title}]]'
+
+    def gen_node(self):
+        node = PyOrgMode.OrgNode.Element()
+        node.heading = self.wrap_heading()
+        node.level = 2
+        node.tags = ['read']
+        node.content = self.comment.strip() + '\n'
+        return node
 
 
 class ReadPageParser:
