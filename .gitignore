@@ -1,3 +1,9 @@
-venv/*
+*/venv/*
 *.*~
 *.pyc
+__pycache__/*
+
+# yato
+yato/data/*
+yato/.idea/*
+yato/settings_local.py
