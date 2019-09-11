@@ -1,0 +1,48 @@
+from typing import List, Tuple
+from bs4 import BeautifulSoup, Tag
+
+
+class Record:
+
+    def __init__(self, title: str, date: str, url: str, comment: str):
+        self.title = title
+        self.date = date
+        self.url = url
+        self.comment = comment
+
+    def __repr__(self):
+        return f'《{self.title}》 read on {self.date}, comment: {self.comment}'
+
+
+class ReadPageParser:
+
+    def __init__(self, text: str):
+        self.bs = BeautifulSoup(text, 'html.parser')
+        self.sub_items = self.bs.find_all('li', class_='subject-item')
+
+    def gen_records(self) -> List[Record]:
+        return [gen_record(x) for x in self.sub_items]
+
+
+def gen_record(item: Tag) -> Record:
+    title, url = get_name_and_url(item)
+    date = get_date(item)
+    comment = get_comment(item)
+    return Record(title, date, url, comment)
+
+
+def get_name_and_url(item: Tag) -> Tuple[str, str]:
+    h = item.find('h2')
+    a = h.find('a')
+    return a.get('title'), a.get('href')
+
+
+def get_date(item: Tag) -> str:
+    info = item.find('span', class_='date')
+    d: str = info.text
+    return d.split('\n')[0].strip() if d else 'unknown'
+
+
+def get_comment(item: Tag) -> str:
+    info = item.find('p', class_='comment')
+    return info.text.strip()
