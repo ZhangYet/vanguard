@@ -10,8 +10,8 @@ def fetch_one_read_page(offset: int, save: bool = True) -> str:
     try:
         with open(file_name) as data:
             return data.read()
-    except OSError as e:
-        print('cannot read cache {} error: {}'.format(file_name, e))
+    except OSError:
+        print('cannot read cache {}, read from www.douban.com'.format(file_name))
 
     params = {
         'start': offset,

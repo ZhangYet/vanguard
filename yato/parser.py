@@ -1,3 +1,4 @@
+import os
 from typing import List, Tuple
 from bs4 import BeautifulSoup, Tag
 from PyOrgMode import PyOrgMode
@@ -17,13 +18,18 @@ class Record:
     def wrap_heading(self) -> str:
         return f'[[{self.url}][{self.title}]]'
 
-    def gen_node(self):
+    def save_org(self, file_name: str):
+        if os.path.exists(file_name):
+            return
+        base = PyOrgMode.OrgDataStructure()
+        base.level = 1
         node = PyOrgMode.OrgNode.Element()
         node.heading = self.wrap_heading()
         node.level = 2
         node.tags = ['read']
         node.content = self.comment.strip() + '\n'
-        return node
+        base.root.append_clean(node)
+        base.save_to_file(file_name)
 
 
 class ReadPageParser:

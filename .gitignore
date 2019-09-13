@@ -7,3 +7,4 @@ __pycache__/*
 yato/data/*
 yato/.idea/*
 yato/settings_local.py
+yato/output/*
