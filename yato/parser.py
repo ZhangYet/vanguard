@@ -18,15 +18,15 @@ class Record:
     def wrap_heading(self) -> str:
         return f'[[{self.url}][{self.title}]]'
 
-    def save_org(self, file_name: str):
-        if os.path.exists(file_name):
+    def save_org(self, file_name: str, force: bool = True):
+        if os.path.exists(file_name) and not force:
             return
         base = PyOrgMode.OrgDataStructure()
         base.level = 1
         node = PyOrgMode.OrgNode.Element()
         node.heading = self.wrap_heading()
         node.level = 2
-        node.tags = ['read']
+        node.tags = ['douban', 'read']
         node.content = self.comment.strip() + '\n'
         base.root.append_clean(node)
         base.save_to_file(file_name)
