@@ -1,0 +1,3 @@
+[submodule "vigna"]
+	path = vigna
+	url = git@github.com:ZhangYet/vigna.git
