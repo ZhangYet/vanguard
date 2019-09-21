@@ -8,3 +8,6 @@ yato/data/*
 yato/.idea/*
 yato/settings_local.py
 yato/output/*
+
+# plume
+plume/cmake-build-debug/*
