@@ -18,7 +18,7 @@ class Record:
     def wrap_heading(self) -> str:
         return f'[[{self.url}][{self.title}]]'
 
-    def save_org(self, file_name: str, force: bool = True):
+    def save_org(self, file_name: str, force: bool = False):
         if os.path.exists(file_name) and not force:
             return
         base = PyOrgMode.OrgDataStructure()
