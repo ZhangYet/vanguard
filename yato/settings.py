@@ -4,6 +4,7 @@ USER_NAME = 'fengxiukeren'
 COOKIE = ''
 HTML_STORAGE_DIR = './data'
 OUT_DIR = './output'
+TOTAL_PAGES = 84
 
 
 try:
@@ -16,6 +17,8 @@ try:
         HTML_STORAGE_DIR = settings_local.HTML_STORAGE_DIR or HTML_STORAGE_DIR
     if hasattr(settings_local, 'OUT_DIR'):
         OUT_DIR = settings_local.OUT_DIR or OUT_DIR
+    if hasattr(settings_local, 'TOTAL_PAGES'):
+        TOTAL_PAGES = settings_local.TOTAL_PAGES or TOTAL_PAGES
 except ImportError:
     pass
 

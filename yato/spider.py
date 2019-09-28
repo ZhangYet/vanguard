@@ -5,8 +5,8 @@ from settings import USER_NAME, COOKIE, HTML_STORAGE_DIR
 URL = 'https://book.douban.com/people/{}/collect'.format(USER_NAME)
 
 
-def fetch_one_read_page(offset: int, save: bool = True) -> str:
-    file_name = '{}/{:06d}.html'.format(HTML_STORAGE_DIR, offset)
+def fetch_one_read_page(offset: int, file_index: int, save: bool = True) -> str:
+    file_name = '{}/{:04d}.html'.format(HTML_STORAGE_DIR, file_index)
     try:
         with open(file_name) as data:
             return data.read()
