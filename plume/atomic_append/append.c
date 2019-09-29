@@ -9,7 +9,14 @@
 #include <stdio.h>
 #include <unistd.h>
 
+extern char **environ;
+
 int main(int argc, char *argv[]) {
+    char **ep;
+    for (ep = environ; *ep != NULL; ep++ ) {
+        printf("environ: %s\n", *ep);
+    }
+
     bool is_append = true;
     printf("argc: %d, argv[3]: %s\n", argc, argv[3]);
     if (argc > 3 && strcmp(argv[3], "x") == 0) {
