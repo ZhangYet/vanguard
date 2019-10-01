@@ -4,7 +4,6 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <stdio.h>
-#include <limits.h>
 #include <zconf.h>
 #include <stdlib.h>
 
