@@ -8,3 +8,4 @@ include_directories("/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/inc
 
 add_executable(atomic_append atomic_append/append.c)
 add_executable(view_symlink realpath/view_link.c)
+add_executable(demo_inotify inotify/demo_inotify.c)

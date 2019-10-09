@@ -11,3 +11,8 @@ yato/output/*
 
 # plume
 plume/cmake-build-debug/*
+plume/CMakeCache.txt
+plume/CMakeFiles/*
+plume/Makefile
+plume/cmake_install.cmake
+plume/compile_commands.json
