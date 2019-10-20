@@ -21,5 +21,4 @@ static void displayInotifyEvent(struct inotify_event *i) {
 int main(int argc, char *argv[]) {
   int inotifyFd, wd, j;
   char buf[BUF_LEN];
-
 }
