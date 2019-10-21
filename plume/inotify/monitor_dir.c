@@ -1,20 +1,28 @@
-#include <ftw.h>
-#include <sys/inotify.h>
+#include <signal.h>
+#include <stdio.h>
 
-int INOTIFY_INST;
-
-int addInotify(const char *pathname, const struct stat *sbuf, int type, struct FTW *ftwb)
+static void sigHandler(int sig)
 {
-  int desc;
-  desc = inotify_add_watch(INOTIFY_INST, pathname, IN_ALL_EVENTS);
-  if (desc > 0) {
-    return 0;
+  static int count = 0;
+
+  if (sig == SIGINT) {
+    count++;
+    printf("Caught SIGINT (%d)\n", count);
+    return;
   }
-  return -1;
+
+  printf("Caught SIGQUIT - that's all folks!\n");
+  exit(0);
 }
 
-int iterDir(const char *pathname)
+int main(int argc, char *argv[])
 {
-  int ret = nftw(pathname, addInotify, 10, 0);
-  return ret
-}  
+  if (signal(SIGINT, sigHandler) == SIG_ERR)
+    exit(-1);
+
+  if (signal(SIGQUIT, sigHandler) == SIG_ERR)
+    exit(-1);
+
+  for(;;)
+    pause();
+}

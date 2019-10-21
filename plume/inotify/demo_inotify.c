@@ -10,7 +10,7 @@ static void displayInotifyEvent(struct inotify_event *i) {
   printf("mask = ");
   if (i->mask & IN_ACCESS) printf("IN_ACCESS");
   if (i->mask & IN_ATTRIB) printf("IN_ATTRIB");
-  print("\n");
+  printf("\n");
 
   if (i->len > 0)
     printf("    name = %s\n", i->name);
