@@ -27,6 +27,7 @@ class Solution:
 
             tail = reverse(h.next)
             tail.next = h
+            h.next = None
             return h
 
         tail = head
