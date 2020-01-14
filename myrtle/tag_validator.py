@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/tag-validator/submissions/
+
 class Tag:
 
     def __init__(self, tag_name: str, is_closed: bool):
