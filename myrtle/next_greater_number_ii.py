@@ -2,27 +2,21 @@
 from typing import List
 
 # 这样直接找会超时
+# 别以为耍这种小把戏就可以过关！
 class Solution:
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
         if not nums:
             return []
 
-        if len(nums) == 1:
-            return [-1]
-
-        new_nums = nums + nums
         l = len(nums)
         res = [0] * l
-        index = 0
-        while index < l:
-            cur = index + 1
-            while cur < 2 * l and new_nums[cur] <= nums[index]:
-                cur += 1
-            if cur >= 2 * l:
-                res[index] = -1
+        for i in range(l):
+            new_nums = nums[(i+1):] + nums[:i]
+            r = [x for x in new_nums if x > nums[i]]
+            if not r:
+                res[i] = -1
             else:
-                res[index] = new_nums[cur]
-            index += 1
+                res[i] = r[0]
 
         return res
 
