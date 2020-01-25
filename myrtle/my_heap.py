@@ -33,6 +33,39 @@ class ListHeap:
         for i in range(heap_size // 2, -1, -1):
             self.heapify(i)
 
+    def maximum(self) -> int:
+        return self.heap[0]
+
+    def extract_max(self) -> int:
+        if not self.heap:
+            raise Exception("heap underflow")
+
+        max, self.heap[0] = self.heap[0], self.heap[-1]
+        self.heap.pop()
+        self.heapify(0)
+        return max
+
+    def _parent(self, i):
+        return (i - 1) // 2
+
+    def heap_increase_key(self, i: int, key: int):
+        if key < self.heap[i]:
+            raise Exception("new key is smaller than current key")
+
+        self.heap[i] = key
+        while i > 0 and self.heap[self._parent(i)] < self.heap[i]:
+            self.heap[self._parent(i)], self.heap[i] = (
+                self.heap[i],
+                self.heap[self._parent(i)],
+            )
+            i = self._parent(i)
+
+        return
+
+    def insert(self, key: int):
+        self.heap.append(key)
+        self.heap_increase_key(len(self.heap) - 1, key)
+
 
 def heap_sort(nums: List[int]) -> List[int]:
     h = ListHeap(nums)
@@ -51,3 +84,8 @@ def test_case():
     nums: List[int] = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
     h = ListHeap(nums)
     print(h.heap)
+    m = h.extract_max()
+    print(f"after extract_max: {h.heap}, max: {m}")
+    h.insert(15)
+    h.insert(16)
+    print(f"after insert: {h.heap}")
