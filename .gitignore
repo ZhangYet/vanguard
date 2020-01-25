@@ -16,3 +16,7 @@ plume/CMakeFiles/*
 plume/Makefile
 plume/cmake_install.cmake
 plume/compile_commands.json
+
+# vanilla
+vanilla/*.png
+vanilla/*.pdf
