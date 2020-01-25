@@ -45,6 +45,10 @@ class ListHeap:
         self.heapify(0)
         return max
 
+    def yield_max(self):
+        while self.heap:
+            yield self.extract_max()
+
     def _parent(self, i):
         return (i - 1) // 2
 
