@@ -28,13 +28,14 @@ class Solution:
                 i -= 1
                 continue
 
-            k = len(stack) - 1
-            while k >= 0:
+            k = 0
+            while k < len(stack):
                 print(f'k index: {k}, cur value: {v}, stack value: {A[stack[k]]}')
                 if v <= A[stack[k]]:
-                    print(f'update ramp: {stack} {stack[k]} - {i}')
-                    ramp = max(ramp, stack[k] - i)
-                k -= 1
+                    if stack[k] - i > ramp:
+                        ramp = max(ramp, stack[k] - i)
+                        break
+                k += 1
             i -= 1
 
         return ramp
