@@ -2,9 +2,7 @@
 from typing import List
 
 
-# 其实就是层遍历啊
 class ListHeap:
-
     def __init__(self, nums: List[int]):
         self.heap: List[int] = nums
         self._build_heap()
@@ -15,8 +13,7 @@ class ListHeap:
     def _right_child(self, i: int) -> int:
         return 2 * i + 2
 
-    def _heapify(self, i):
-        print(f'heapify {i}')
+    def heapify(self, i):
         l = self._left_child(i)
         r = self._right_child(i)
 
@@ -27,15 +24,27 @@ class ListHeap:
 
         if largest != i:
             self.heap[largest], self.heap[i] = self.heap[i], self.heap[largest]
-            self._heapify(largest)
+            self.heapify(largest)
 
         return
 
     def _build_heap(self):
         heap_size = len(self.heap)
         for i in range(heap_size // 2, -1, -1):
-            self._heapify(i)
+            self.heapify(i)
 
+
+def heap_sort(nums: List[int]) -> List[int]:
+    h = ListHeap(nums)
+    res: List[int] = [0] * len(nums)
+
+    for i in range(len(nums) - 1, 0, -1):
+        h.heap[0], h.heap[-1] = h.heap[-1], h.heap[0]
+        tmp = h.heap.pop()
+        res[-(i + 1)] = tmp
+        h.heapify(0)
+
+    return res
 
 
 def test_case():
