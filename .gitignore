@@ -20,3 +20,4 @@ plume/compile_commands.json
 # vanilla
 vanilla/*.png
 vanilla/*.pdf
+vanilla/*.gif

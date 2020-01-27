@@ -62,3 +62,14 @@ def b_tree_insert_notfull(root: BNode, key: int):
         if key > root.keys[i]:
             i += 1
     return b_tree_split_child(root.children[i], key)
+
+
+def b_tree_insert(root: BNode, key: int):
+    if root.n == 2 * DEGREE - 1:
+        new_root = BNode()
+        new_root.is_leaf = False
+        new_root.n = 0
+        new_root.children[0] = root
+        b_tree_split_child(new_root, 1, root)
+        b_tree_insert_notfull(new_root, key)
+    return b_tree_insert_notfull(root, key)
