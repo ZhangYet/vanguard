@@ -34,7 +34,7 @@ class LRUCache:
     def delete_from_tail(self):
         need_delete = self.tail.prev.key
         self.data.pop(need_delete)
-        self.tail.prev = self.tail.prev
+        self.tail.prev = self.tail.prev.prev
         self.tail.prev.next = self.tail
 
     def update_key_chain(self, key: int):
