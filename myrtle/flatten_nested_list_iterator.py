@@ -23,7 +23,7 @@
 
 def flatten(nestedList):
     for n in nestedList:
-        if n.isInterger:
+        if n.isInteger():
             yield n.getInteger()
         else:
             yield from flatten(n.getList())
@@ -35,9 +35,9 @@ class NestedIterator:
         self.pos = 0
 
     def next(self) -> int:
-        res = self.list[self.pos]
+        result = self.list[self.pos]
         self.pos += 1
-        return res
+        return result
 
     def hasNext(self) -> bool:
         return self.pos < len(self.list)
