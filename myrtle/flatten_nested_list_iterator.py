@@ -21,8 +21,8 @@
 #        """
 
 
-def flatten(nested_list):
-    for n in nested_list:
+def flatten(nestedList):
+    for n in nestedList:
         if n.isInterger:
             yield n.getInteger()
         else:
@@ -30,17 +30,17 @@ def flatten(nested_list):
 
 
 class NestedIterator:
-    def __init__(self, nestedList):
-        self.data = list(flatten(nestedList))
+    def __init__(self, nestedList: [NestedInteger]):
+        self.list = list(flatten(nestedList))
         self.pos = 0
 
     def next(self) -> int:
-        res = self.data[self.pos]
+        res = self.list[self.pos]
         self.pos += 1
         return res
 
     def hasNext(self) -> bool:
-        return self.pos < len(self.data)
+        return self.pos < len(self.list)
 
 
 # Your NestedIterator object will be instantiated and called as such:
