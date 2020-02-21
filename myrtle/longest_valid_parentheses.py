@@ -2,15 +2,19 @@
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
         stack = []
-        count = 0
-        for c in s:
-            if c == "(":
-                stack.append(c)
+        index = ["0"] * len(s)
+        i = 0
+        while i < len(s):
+            if s[i] == "(":
+                stack.append(i)
+                i += 1
                 continue
-            if c == ")" and stack:
-                stack.pop()
-                count += 2
+            if s[i] == ")" and stack:
+                index[i] = "1"
+                index[stack.pop()] = "1"
+            i += 1
 
+        count = max([len(s) for s in "".join(index).split("0")])
         return count
 
 
