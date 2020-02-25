@@ -37,3 +37,6 @@ class Solution:
             second = second.next
 
         return dummy_head.next
+
+
+# 总结：其实不难，就是难处理边界条件。保持一个不变量会简单一点。
