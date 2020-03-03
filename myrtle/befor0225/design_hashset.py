@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/design-hashset/
+# 因为有删除，所以不用开放寻址法
 from typing import List
 
 

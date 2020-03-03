@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/delete-operation-for-two-strings/
+# 其实就是用动态规划找最长公共子串
 from typing import List
 
 

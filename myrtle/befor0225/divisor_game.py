@@ -1,4 +1,9 @@
 # https://leetcode.com/problems/divisor-game/
+# 最快的方法是：
+# class Solution:
+#     def divisorGame(self, N: int) -> bool:
+#         return not (N & 1)
+# 诀窍在于：1 是任意整数的因素
 from typing import List
 
 
