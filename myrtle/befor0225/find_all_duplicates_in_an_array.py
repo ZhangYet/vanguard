@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/find-all-duplicates-in-an-array/
+# 只需要 O(n) 关键在于 n 的取值
 from typing import List
 
 
