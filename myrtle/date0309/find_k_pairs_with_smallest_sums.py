@@ -8,7 +8,10 @@ class Solution:
         data = []
 
         head_1, head_2 = 0, 0
+        len_1, len_2 = len(nums1), len(nums2)
         for _ in range(k):
+            if head_1 >= len_1 or head_2 >= len_2:
+                break
             if nums1[head_1] < nums2[head_2]:
                 for y in nums2[head_2:]:
                     heapq.heappush(data, [nums1[head_1], y])
