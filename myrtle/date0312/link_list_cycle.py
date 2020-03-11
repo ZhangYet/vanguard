@@ -1,24 +1,20 @@
 # https://leetcode.com/problems/linked-list-cycle/
-# 一定要熟啊
-
-
 class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
-
 
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
         if not head:
             return False
         fast, slow = head, head
-        while fast.next:
+        while fast:
+            fast = fast.next
+            if not fast:
+                return False
+            fast = fast.next
             slow = slow.next
-            fast = fast.next
-            if not fast.next:
-                break
-            fast = fast.next
             if fast == slow:
                 return True
 
