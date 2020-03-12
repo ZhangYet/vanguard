@@ -10,8 +10,8 @@ class Solution:
 
         for i in range(n-1):
             if s[i] == s[i+1]:
-                d[i][i+1] = 1
-                res = s[i:i+1]
+                dp[i][i+1] = 1
+                res = s[i:i+2]
                 max_len = 2
 
         for i in range(n):
