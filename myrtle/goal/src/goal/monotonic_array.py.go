@@ -21,3 +21,6 @@ func isMonotonic(A []int) bool {
 	}
 	return true
 }
+
+// 最大的问题是连续等于的情况会干扰我们，所以我们其实用 count 记录上一次有差异的情况
+// 如果 count 不等于0， 那么它不会被更新，如果它等于0，那么它不影响结果

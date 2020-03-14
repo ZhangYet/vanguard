@@ -39,6 +39,13 @@ func Test_isMonotonic(t *testing.T) {
 			},
 			want: true,
 		},
+		{
+			name: "case5",
+			args: args{
+				A: []int{2, 1, 1, 1, 2},
+			},
+			want: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
