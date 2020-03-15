@@ -20,7 +20,7 @@ func (this treeFreqHeap) Len() int {
 }
 
 func (this treeFreqHeap) Less(i, j int) bool {
-	return this[i].freq < this[j].freq
+	return this[i].freq > this[j].freq
 }
 
 func (this treeFreqHeap) Swap(i, j int) {
@@ -34,8 +34,8 @@ func (this *treeFreqHeap) Push(x interface{}) {
 func (this *treeFreqHeap) Pop() interface{} {
 	old := *this
 	n := len(old)
-	x := old[0]
-	*this = old[1:n]
+	x := old[n-1]
+	*this = old[0 : n-1]
 	return x
 }
 
@@ -75,15 +75,12 @@ func findFrequentTreeSum(root *TreeNode) []int {
 		}
 		heap.Push(&h, item)
 	}
-	h.output()
 	itemRes := []treeFreqItem{}
 	maxFreq := 0
-	fmt.Printf("len(h): %d\n", len(h))
-	for i := 0; i < len(h); i++ {
+	iterLoop := len(h)
+	for i := 0; i < iterLoop; i++ {
 		item := heap.Pop(&h).(treeFreqItem)
-		fmt.Printf("i: %d, item.freq: %d, maxFreq %d\n", i, item.freq, maxFreq)
 		if item.freq < maxFreq {
-			fmt.Println("wtf?")
 			break
 		}
 		maxFreq = item.freq
