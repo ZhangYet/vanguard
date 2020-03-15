@@ -7,6 +7,8 @@ import (
 
 // 直接算子树的和
 // 最后用一个最大堆找 most freq
+// 对 go 的 heap 还是不熟啊。（记得 Less 取 > 可以获得最大堆）
+// heap 的 pop 会把堆顶元素放到尾部，然后我们的 Pop() 要把最后的元素取出来
 
 type treeFreqItem struct {
 	val  int
