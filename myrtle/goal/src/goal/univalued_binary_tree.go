@@ -1,6 +1,6 @@
 package goal
 
-// 虽然是递归，但是也没有那么简单，其实没一层子树都得比较
+// 虽然是递归，但是也没有那么简单，其实每一层子树都得比较
 
 func isUnivalTree(root *TreeNode) bool {
 	if root == nil {
