@@ -1,10 +1,5 @@
 package goal
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func isPalindrome(head *ListNode) bool {
 	data := []int{}
 	for {
