@@ -13,11 +13,12 @@ func fourSum(nums []int, target int) [][]int {
 		}
 		for j := i + 1; j < len(nums); j++ {
 			if j > i+1 && nums[j] == nums[j-1] {
-				j += 1
 				continue
 			}
+
 			k := j + 1
 			l := len(nums) - 1
+
 			for k < l {
 				if k > j+1 && nums[k] == nums[k-1] {
 					k++
@@ -27,20 +28,18 @@ func fourSum(nums []int, target int) [][]int {
 					l--
 					continue
 				}
-				s := nums[i] + nums[j] + nums[k] + nums[l]
-				if s == target {
-					res = append(res, []int{nums[i], nums[j], nums[k], nums[l]})
+				sum := nums[i] + nums[j] + nums[k] + nums[l]
+				if sum == target {
+					temp := []int{nums[i], nums[j], nums[k], nums[l]}
+					res = append(res, temp)
 					k++
 					l--
-				}
-				if s < target {
+				} else if sum < target {
 					k++
-				}
-				if s > target {
+				} else {
 					l--
 				}
 			}
-
 		}
 	}
 	return res
