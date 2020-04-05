@@ -4,6 +4,7 @@ import "math"
 
 // https://leetcode.com/problems/nth-digit/
 // 思路：先确定是几位数
+// 思路没问题，处理好边界条件就好，不过当前的答案是搓的。
 
 func calDigitAndRemain(n int) (int, int) {
 	res := 1
