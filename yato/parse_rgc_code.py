@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from typing import List
 
 base_dir = "/Users/zhangye/Repos/rgraphicscookbook/_book"
+rmd_dir = "/Users/zhangye/Repos/rgc_code_examples"
 
 
 class SectionCodes:
@@ -18,7 +19,7 @@ class SectionCodes:
 
 
 class ChapterCodes:
-    def __init__(self, title: str, file_name: str, base_dir="codes/", rmd_dir="rmd/"):
+    def __init__(self, title: str, file_name: str, base_dir="codes/", rmd_dir=rmd_dir):
         self.chapter_title = title
         self.sections: List[SectionCodes] = []
         self.base_dir = base_dir
@@ -30,6 +31,21 @@ class ChapterCodes:
 
     def add_sections(self, sections: List[SectionCodes]):
         self.sections = sections
+
+    def output_rmd(self):
+        if not os.path.exists(self.rmd_dir):
+            os.mkdir(self.rmd_dir)
+
+        file_name = f"{self.rmd_dir}/{self.file_name}.Rmd"
+        with open(file_name, "w") as output:
+            output.write(f"# {self.chapter_title}\n\n")
+            for section in self.sections:
+                output.write(f"## {section.section}\n")
+                for code in section.code:
+                    output.write("```{r}\n")
+                    output.write(f'{code}\n\n')
+                    output.write("```\n")
+                output.write("\n")
 
     def output_code(self):
         if not os.path.exists(self.base_dir):
@@ -78,6 +94,8 @@ if __name__ == "__main__":
         test_html = f"{base_dir}/{chapter}.html"
         with open(test_html) as r:
             text = r.read()
-            ch = ChapterHtml(text, f"{chapter}" if i != 1 else "chap1")
+            output_file = f'chap{i:02}'
+            ch = ChapterHtml(text, output_file)
             cc = ch.parse_chapter()
-            cc.output_code()
+            #cc.output_code()
+            cc.output_rmd()
