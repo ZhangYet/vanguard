@@ -10,24 +10,22 @@ func max(a, b int) int {
 }
 
 func longestOnes(A []int, K int) int {
-	ret := 0
-	left, right := 0, 0
-	L := len(A)
-	for left < L {
-		if right < L && ((A[right] == 0 && K > 0) || A[right] == 1) {
-			right += 1
+	res, left, right := 0, 0, 0
+	for left < len(A) {
+		if right < len(A) && ((A[right] == 0 && K > 0) || A[right] == 1) {
 			if A[right] == 0 {
-				K -= 1
+				K--
 			}
+			right++
 		} else {
-			if K == 0 || (right == L && K > 0) {
-				ret = max(ret, right-left)
+			if K == 0 || (right == len(A) && K > 0) {
+				res = max(res, right-left)
 			}
 			if A[left] == 0 {
-				K += 1
+				K++
 			}
-			L += 1
+			left++
 		}
 	}
-	return ret
+	return res
 }
