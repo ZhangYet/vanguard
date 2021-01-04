@@ -1,5 +1,6 @@
 package goal
 
+// https://leetcode.com/problems/reorder-list/submissions/ 有空改进一下
 func reorderList(head *ListNode) {
 	cur := head
 	if cur == nil {
@@ -20,6 +21,7 @@ func reorderList(head *ListNode) {
 
 	return
 }
+
 func reorderListHead(head *ListNode) {
 	if head.Next == nil {
 		return
